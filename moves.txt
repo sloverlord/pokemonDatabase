@@ -1,0 +1,11 @@
+1	scratch	normal	physical
+1	40	100
+
+2	ember	fire	special
+4	40	100
+
+3	smokescreen	normal	status
+3	0	100
+
+4	rock_tomb	rock	physical
+2	60	95
