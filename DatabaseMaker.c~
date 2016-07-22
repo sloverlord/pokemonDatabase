@@ -1,0 +1,274 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define POKNUM 152
+
+typedef struct pokemon {
+	char name[20];
+	int hp, atk, def, spatk, spdef, spd;
+	int id;
+	
+	char type1[10];
+	char type2[10];
+} pokemon;
+
+typedef struct charachter {
+	pokemon *class;
+	char *name;
+	int level;
+	int ap;
+	
+	//bonuses
+	int hp;
+	int atk;
+	int def;
+	int spatk;
+	int spdef;
+	int spd;
+	
+	struct charachter *next;
+} charachter;
+
+pokemon *database[POKNUM];
+charachter *allChars;
+
+void printPokeInfo(FILE *fp, pokemon *toPrint){
+	fprintf(fp, "%d\t%s\t%s\t%s\n%d\t%d\t%d\t%d\t%d\t%d\t\n", toPrint->id, toPrint->name, toPrint->type1, toPrint->type2, toPrint->hp, toPrint->atk, toPrint->def, toPrint->spatk, toPrint->spdef, toPrint->spd);
+}
+
+charachter *findChar(char *name){
+	charachter *looker = allChars;
+	
+	while (looker != NULL && strcmp(looker->name, name)){
+		looker = looker->next;
+	}
+		
+	return looker;
+}
+
+void addChar(charachter *toAdd){
+	if (findChar(toAdd->name) != NULL){
+		fprintf(stdout, "Player already exists\n");
+		return;
+	}
+	
+	toAdd->next = allChars;
+	allChars = toAdd;
+}
+
+int findByName(char *name){
+	int i;
+	
+	for (i = 0; i < POKNUM; i += 1){
+		if (database[i] != NULL && strcmp(database[i]->name, name) == 0) {
+			return i;
+		}
+	}
+	
+	return -1;
+}
+
+int main(void){
+	int mode = 0;
+	FILE *fp;
+	
+	fprintf(stdout, "Enter action (0 for options): ");
+	fscanf(stdin, "%i", &mode);
+	
+	while(mode != 100){
+		if (mode == 0){
+			// list input options
+			fprintf(stdout, "0: options\n1: new pokemon\n");
+			fprintf(stdout, "2: display a pokemon\n");
+			fprintf(stdout, "3: save database\n");
+			fprintf(stdout, "4: load database\n5: new charachter\n");
+			fprintf(stdout, "6: save a charachter\n");
+			fprintf(stdout, "7: print a charachter\n");
+			fprintf(stdout, "8: load a charachter\n");
+			fprintf(stdout, "100: exit\n");
+		} else if (mode == 1){
+			// add a new pokemon
+			pokemon *newPok = malloc(sizeof(pokemon));
+			
+			fprintf(stdout, "enter name: ");
+			fscanf(stdin, "%s", newPok->name);
+			
+			fprintf(stdout, "enter hp: ");
+			fscanf(stdin, "%d", &newPok->hp);
+			fprintf(stdout, "enter atk: ");
+			fscanf(stdin, "%d", &newPok->atk);
+			fprintf(stdout, "enter def: ");
+			fscanf(stdin, "%d", &newPok->def);
+			fprintf(stdout, "enter spatk: ");
+			fscanf(stdin, "%d", &newPok->spatk);
+			fprintf(stdout, "enter spdef: ");
+			fscanf(stdin, "%d", &newPok->spdef);
+			fprintf(stdout, "enter spd: ");
+			fscanf(stdin, "%d", &newPok->spd);
+			
+			fprintf(stdout, "Enter id: ");
+			fscanf(stdin, "%d", &newPok->id);
+			
+			fprintf(stdout, "enter type 1: ");
+			fscanf(stdin, "%s", newPok->type1);
+			
+			fprintf(stdout, "enter type 2: ");
+			fscanf(stdin, "%s", newPok->type2);
+			
+			database[newPok->id] = newPok;
+		} else if (mode == 2){
+			// displays stats for specified pokemon
+			char *name = malloc(sizeof(char *));
+			
+			fprintf(stdout, "enter name: ");
+			fscanf(stdin, "%s", name);
+			
+			int id = findByName(name);
+			
+			if (database[id] == NULL || id < 0){
+				fprintf(stdout, "Not an entry\n");
+			} else {
+				printPokeInfo(stdout, database[id]);
+			}
+			
+		} else if (mode == 3){
+			// save the database to a file
+			char *fName = malloc(sizeof(char *));
+			
+			fprintf(stdout, "Enter a file to save database to: ");
+			fscanf(stdin, "%s", fName);
+		
+			fp = fopen(fName, "w");
+			
+			int id;
+			for (id = 1; id < POKNUM; id += 1){
+				if (database[id] != NULL){
+					printPokeInfo(fp, database[id]);
+				}
+			}
+			
+			fclose(fp);
+		} else if (mode == 4){
+			// Load a file into data base (individual pokemon)
+			char *fName = malloc(sizeof(char *));
+			
+			fprintf(stdout, "Enter a file to load database: ");
+			fscanf(stdin, "%s", fName);
+			
+			fp = fopen(fName, "r");
+			
+			while (!feof(fp)){
+				pokemon *newPok = malloc(sizeof(pokemon));
+			
+				fscanf(fp, "%d%s%s%s%d%d%d%d%d%d", &newPok->id, newPok->name, newPok->type1, newPok->type2, &newPok->hp, &newPok->atk, &newPok->def, &newPok->spatk, &newPok->spdef, &newPok->spd);
+				
+				fprintf(stdout, "loaded: %s\n", newPok->name);
+				
+				database[newPok->id] = newPok;
+			}
+			
+			fclose(fp);
+		} else if (mode == 5){
+			// make a new charachter
+			charachter *newPok = malloc(sizeof(charachter));
+			char *name = malloc(sizeof(char *));
+			
+			fprintf(stdout, "enter pokemon to be: ");
+			fscanf(stdin, "%s", name);
+			
+			int id = findByName(name);
+			
+			if (database[id] != NULL){
+				fprintf(stdout, "Enter starting level: ");
+				fscanf(stdin, "%d", &newPok->level);
+			
+				fprintf(stdout, "enter charachter name to be: ");
+				fscanf(stdin, "%s", newPok->name);
+				
+				fprintf(stdout, "enter ability points: ");
+				fscanf(stdin, "%d", &newPok->ap);
+				
+				newPok->hp = 0;
+				newPok->atk = 0;
+				newPok->def = 0;
+				newPok->spatk = 0;
+				newPok->spdef = 0;
+				newPok->spd = 0;
+				
+				newPok->class = database[id];
+
+				addChar(newPok);
+			}
+		} else if (mode == 6){
+			// save a charachter to a file
+			char *toSave = malloc(sizeof(char *));
+			char *fName = malloc(sizeof(char *));
+			
+			fprintf(stdout, "Enter a file to save char to: ");
+			fscanf(stdin, "%s", fName);
+		
+			fp = fopen(fName, "w");
+			
+			fprintf(stdout, "Enter a charachter to save: ");
+			fscanf(stdin, "%s", toSave);
+			
+			charachter *finder = findChar(toSave);
+			
+			if (finder != NULL){
+				fprintf(fp, "%s - level: %d %s %d\n", finder->name, finder->level, finder->class->name, finder->ap);
+				fprintf(fp, "%d\t%d\t%d\t%d\t%d\t%d\n", finder->hp, finder->atk, finder->def, finder->spatk, finder->spdef, finder->spd);
+			} else {
+				fprintf(stdout, "Could not find\n");
+			}
+			
+			fclose(fp);
+		} else if (mode == 7){
+			// print a charachter
+			char *toFind = malloc(sizeof(char *));
+			fprintf(stdout, "Enter a charachter to print: ");
+			fscanf(stdin, "%s", toFind);
+			
+			charachter *finder = findChar(toFind);
+			
+			if (finder != NULL){
+				fprintf(stdout, "%s\t%d (%d)\n",finder->name, finder->level, finder->ap);
+				printPokeInfo(stdout, finder->class);
+				fprintf(stdout, "%d\t%d\t%d\t%d\t%d\t%d\n", finder->hp, finder->atk, finder->def, finder->spatk, finder->spdef, finder->spd);
+			}
+		} else if (mode == 8){
+			// Load a file into data base (individual player)
+			char *toss = malloc(sizeof(char *));
+			charachter *newChar = malloc(sizeof(charachter));
+			
+			char *fName = malloc(sizeof(char *));
+			
+			fprintf(stdout, "Enter a file to load player: ");
+			fscanf(stdin, "%s", fName);
+			
+			fp = fopen(fName, "r+");
+			
+			fscanf(fp, "%s%s%s%d%s%d", newChar->name, toss, toss, &newChar->level, toss, &newChar->ap);
+			fscanf(fp, "%d%d%d%d%d%d", &newChar->hp, &newChar->atk, &newChar->def, &newChar->spatk, &newChar->spdef, &newChar->spd);
+			
+			int id = findByName(toss);
+			
+			if (id != -1){
+				newChar->class = database[id];
+			
+				addChar(newChar);
+			} else {
+				fprintf(stdout, "Could not load\n");
+			}
+			
+			fclose(fp);
+		}
+		
+		mode = 100;
+		
+		fprintf(stdout, "Enter action (0 for options): ");
+		fscanf(stdin, "%i", &mode);
+	}
+	
+	return 100;
+}

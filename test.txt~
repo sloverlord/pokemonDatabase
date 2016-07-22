@@ -1,0 +1,228 @@
+1	bulbasaur	grass	poison
+45	4	4	6	6	4	
+
+2	ivysaur	grass	poison
+60	6	6	8	8	6	
+
+3	venusaur	grass	poison
+80	8	8	10	10	8	
+
+4	charmander	fire	none
+39	5	4	6	5	6	
+
+5	charmeleon	fire	none
+58	6	5	8	6	8	
+
+6	charizard	fire	flying
+78	8	7	10	8	10	
+
+7	squirtle	water	none
+44	4	6	5	6	4	
+
+8	wartortle	water	none
+59	6	8	6	8	5	
+
+9	blastoise	water	none
+79	8	10	8	10	7	
+
+10	caterpie	bug	none
+45	3	3	2	2	4	
+
+11	metapod	bug	none
+50	2	5	2	2	3	
+
+12	butterfree	bug	flying
+60	4	5	8	8	7	
+
+13	weedle	bug	poison
+40	3	3	2	2	5	
+
+14	kakuna	bug	poison
+45	2	5	2	2	3	
+
+15	beedrill	bug	poison
+65	8	4	4	8	7	
+
+16	pidgey	normal	flying
+40	4	4	3	3	5	
+
+17	pidgeotto	normal	flying
+63	6	5	5	5	7	
+
+18	pidgeot	normal	flying
+83	8	7	7	7	9	
+
+19	rattata	normal	none
+30	5	3	2	3	7	
+
+20	raticate	normal	none
+55	8	6	5	7	9	
+
+21	spearow	normal	flying
+40	6	3	3	3	7	
+
+22	fearow	normal	flying
+65	9	6	6	6	10	
+
+23	ekans	poison	none
+35	6	4	4	5	5	
+
+24	arbok	poison	none
+60	8	6	6	7	8	
+
+25	pikachu	electric	none
+35	5	3	5	4	9	
+
+26	raichu	electric	none
+60	9	5	9	8	10	
+
+27	sandshrew	ground	none
+50	7	8	2	3	4	
+
+28	sandslash	ground	none
+75	10	11	4	5	6	
+
+29	nidoran(f)	poison	none
+55	4	5	4	4	4	
+
+30	nidorina	poison	none
+70	6	6	5	5	5	
+
+31	nidoqueen	poison	ground
+90	9	8	7	8	7	
+
+32	nidoran(m)	poison	none
+46	5	4	4	4	5	
+
+33	nidorino	poison	none
+61	7	5	5	5	6	
+
+34	nidoking	poison	ground
+81	10	7	8	7	8	
+
+35	clefairy	fairy	none
+70	4	4	6	6	3	
+
+36	clefable	fairy	none
+95	7	7	9	9	6	
+
+37	vulpix	fire	none
+38	4	4	5	6	6	
+
+38	ninetails	fire	none
+73	7	7	8	10	10	
+
+39	jigglypuff	normal	fairy
+115	4	2	4	2	2	
+
+40	wigglytuff	normal	fairy
+140	7	4	8	5	4	
+
+41	zubat	poison	flying
+40	4	3	3	4	5	
+
+42	golbat	poison	flying
+75	8	7	6	7	9	
+
+43	oddish	grass	poison
+45	5	5	7	6	3	
+
+44	gloom	grass	poison
+60	6	7	8	7	4	
+
+45	vileplume	grass	poison
+75	8	8	11	9	5	
+
+46	paras	bug	grass
+35	7	5	4	5	2	
+
+47	parasect	bug	grass
+60	9	8	6	8	3	
+
+48	venonat	bug	poison
+60	5	5	4	5	4	
+
+49	venomoth	bug	poison
+70	6	6	9	7	9	
+
+50	diglett	ground	none
+10	5	2	3	4	9	
+
+51	dugtrio	ground	none
+35	8	5	5	7	12	
+
+52	meowth	normal	none
+40	4	3	4	4	9	
+
+53	persian	normal	none
+65	7	6	6	6	11	
+
+54	psyduck	water	none
+50	5	4	6	5	5	
+
+55	golduck	water	none
+80	8	7	9	8	8	
+
+56	mankey	fighting	none
+40	8	3	3	4	7	
+
+57	primeape	fighting	none
+65	10	6	6	7	9	
+
+58	growlithe	fire	none
+55	7	4	7	5	6	
+
+59	arcanine	fire	none
+90	11	8	10	8	9	
+
+60	poliwag	water	none
+40	5	4	4	4	9	
+
+61	poliwhirl	water	none
+65	6	6	5	5	9	
+
+62	poliwrath	water	fighting
+90	9	9	7	9	7	
+
+63	abra	psychic	none
+25	2	1	10	5	9	
+
+64	kadabra	phychic	none
+40	3	3	12	7	10	
+
+65	alakazam	psychic	none
+55	5	4	13	9	12	
+
+66	machop	fighting	none
+70	8	5	3	3	3	
+
+67	machoke	fighting	none
+80	10	7	5	6	4	
+
+68	machamp	fighting	none
+90	13	8	6	8	5	
+
+69	bellsprout	grass	poison
+50	7	3	7	3	4	
+
+70	weepinbell	grass	poison
+65	9	5	8	4	5	
+
+71	victreebel	grass	poison
+80	10	6	10	7	7	
+
+72	tentacool	water	poison
+40	4	3	5	10	7	
+
+73	tentacruel	water	poison
+80	7	6	8	13	10	
+
+74	geodude	rock	ground
+40	8	10	3	3	2	
+
+75	graveler	rock	ground
+55	9	11	4	4	3	
+
+76	golem	rock	ground
+80	12	13	5	6	4	
+

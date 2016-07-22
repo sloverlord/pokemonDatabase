@@ -1,0 +1,51 @@
+#include <iostream>
+#include <fstream>
+
+typedef struct pokemon {
+	std::string name;
+	int hp, atk, def, spatk, spdef, spd;
+	int level, id;
+	
+	std::string type;
+	
+	pokemon(){}
+	
+	pokemon(int h, int a, int d, int sa, int sd, int s, int l, std::string t){
+		hp = h;
+		atk = a;
+		def = d;
+		spatk = sa;
+		spdef = sd;
+		spd = s;
+		level = l;
+		type = t;
+	}
+} pokemon;
+
+pokemon database[10];
+
+int main(void){
+	std::string fName;
+	int mode = 0;
+	
+	std::cin >> "Enter a file: " >> fName;
+	
+//	FILE fp = fopen(fName, "wr");
+	
+	std::cin >> "Enter action (0 for options): " >> mode;
+	
+	while(mode != 100){
+		if (mode == 0){
+			std::cout << "0: options\n1: new entry\n"
+				<< "100: exit\n";
+		} else if (mode == 1){
+			pokemon newPok;
+			
+			std::cin >> "enter name " >> newPok.name;
+		}
+		
+		cin >> "Enter action (0 for options): " >> mode;
+	}
+	
+	//if(fName == "kanto.txt"
+}
